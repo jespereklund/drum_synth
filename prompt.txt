@@ -1,0 +1,17 @@
+Der skal laves en tromme synthesizer med genererede lyde, patterns og sequencer og en sequenzer med patterns. 
+
+Nederst skal der være et master panel med: Start/Stop knap, BPM slider
+
+Anvend native Web Audio API til at generere lydene.
+
+Den skal have følgende generatorer: Hihat, snare, bass, tom1, tom2, tom3, ride, splash
+
+Man skal skifte mellem at se Synthesizeren og Sequenceren. Master panelet skal altid være synligt. 
+
+# Synthesizer
+Hver lyd skal genereres af en generator. UI og generatoren skal adskilles i separate svelte komponenter. Der skal være slidere for de relevante parameter. Der skal være et display ved siden af hver kontrol til udlæsning af værdien. Generatoren skal kunne trigges, så den genererer det antal samples, der passer til bufferen. Hver gang de modtager en trigger skal de generere næste sæt samples. Samples skal gives til parent App.
+
+# Patterns og Sequencer
+Der skal være variabelt antal patterns, man skal kunne redigere individuelt. De skal kunne slettes. Man skal kunne vælge mellem patterns, man vil redigere i en liste. Patterns skal være et grafisk grid, en række for hvert instrument. Der skal være 16 kolonner, 4 for hver fjerdedels takt. Der skal være en knap ved hver 16-del. Knappen skal toggle mellem 3 tilstande: off, svag, kraftig. Tilstanden bruges til at styre volume for instrumentet Lav "lys" i knappen, slukket ved off, svagt lys og kraftigt lys. Gulligt lys. Til højre for hvert spor skal der være volume og pan slider. Disse to skal gælde for alle patterns i sequenceren. I højre side af skærmen skal der være en vertikal playliste med de valgte patterns, der skal afspilles. De skal grafisk være en miniudgave af de pågældene patterns, de skal dog ikke kunne redigeres her. Man skal kunne indsætte og slette patterns og man skal kunne flytte rundt på patterns med drag and drop.
+
+App.svelte skal modtage triggere fra sequenceren og videregive dem til de pågældende instrument komponenter. App.svelte skal opsamle samples fra instrument komponenterne og mixe dem sammen og sende summen til lyd output bufferen. App.svelte skal også trigge instrumenterne, når der skal laves et nyt sæt samples til bufferen.
